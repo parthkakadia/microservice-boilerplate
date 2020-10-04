@@ -1,0 +1,33 @@
+version: '3'
+services: 
+    servicea:
+        build: './service-template'
+        ports: 
+            - "3000:3000"
+        environment: 
+            - SERVICE=servicea
+    
+    serviceb:
+        build: './service-template'
+        ports:
+            - "3001:3000"
+        environment: 
+            - SERVICE=serviceb
+
+    servicec:
+        build: './service-template'
+        ports:
+            - "3002:3000"
+        environment: 
+            - SERVICE=servicec
+
+    nginx:
+        image: nginx:latest
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./nginx-conf/nginx.conf:/etc/nginx/conf.d/default.conf
+        depends_on: 
+            - servicea
+            - serviceb
+            - servicec
