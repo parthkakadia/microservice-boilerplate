@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('servicea:server');
+var debug = require('debug')(process.env.SERVICE+':server');
 var http = require('http');
 
 /**
